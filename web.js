@@ -1,10 +1,12 @@
 var express = require('express');
+var fs = require('fs');
 
 var app = express.createServer(express.logger());
+var file = fs.readFile('index.html');
 
 app.get('/', function (request, response) {
 	"use strict";
-    response.send('Hello World2!');
+    response.send(file);
 });
 
 var port = process.env.PORT || 5000;
