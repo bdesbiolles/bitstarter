@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var express = require('express');
 var fs = require('fs');
 
@@ -13,12 +14,14 @@ fs.readFile('index.html', 'utf8', function (err, data) {
 
 var app = express.createServer(express.logger());
 
+app.use(express.static(__dirname + '/bootstrap'));
+
 app.get('/', function (request, response) {
 	"use strict";
     response.send(buf.toString());
 });
 
-var port = process.env.PORT || 5000;
+var port = process.env.PORT || 8080;
 app.listen(port, function () {
 	"use strict";
     console.log("Listening on " + port);
